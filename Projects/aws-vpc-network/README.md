@@ -54,3 +54,34 @@ The private subnets use a separate private route table with only the VPC local r
 - AWS resource tagging
 - Infrastructure verification using AWS CLI
 - Git and GitHub documentation workflow
+## EC2 Web Server Deployment
+
+An Amazon EC2 instance was deployed into Public Subnet 1 to validate internet connectivity through the custom VPC.
+
+### EC2 Configuration
+
+- Operating System: Amazon Linux 2023
+- Instance Type: `t3.micro`
+- Subnet: Public Subnet 1 (`10.0.1.0/24`)
+- Availability Zone: `us-east-1a`
+- Public IPv4 Address: Enabled
+- Security Group: `aws-portfolio-web-sg`
+
+### Security Group
+
+The web server security group allows inbound HTTP traffic:
+
+| Protocol | Port | Source | Purpose |
+|----------|------|--------|---------|
+| TCP | 80 | `0.0.0.0/0` | Public HTTP access |
+
+### Automated Web Server Configuration
+
+EC2 User Data was used to automatically install and configure Apache during instance initialization.
+
+```bash
+#!/bin/bash
+dnf install -y httpd
+systemctl enable httpd
+systemctl start httpd
+echo "<h1>My AWS Cloud Portfolio</h1><p>Day 3 - EC2 Web Server running in my custom VPC.</p>" > /var/www/html/index.html
