@@ -194,3 +194,40 @@ This architecture demonstrates several AWS security best practices:
 - Secure administration without SSH
 - AWS CLI networking configuration and validation
 - Troubleshooting private-instance Internet connectivity
+
+## Day 5 — Amazon S3 Security, Versioning, and Recovery
+
+Built and validated a secure Amazon S3 storage workflow using the AWS CLI.
+
+### What I implemented
+
+- Created an Amazon S3 bucket in `us-east-1`
+- Verified S3 Block Public Access protections
+- Confirmed all four public access controls were enabled
+- Enabled S3 Versioning
+- Uploaded objects using the AWS CLI
+- Overwrote an existing object while preserving the previous version
+- Listed and inspected individual S3 object versions
+- Recovered a previous version using its Version ID
+- Verified server-side encryption using SSE-S3 (`AES256`)
+- Validated the final bucket security configuration
+- Deleted all stored object versions
+- Deleted the S3 bucket after completing the lab
+- Removed local temporary test files
+
+### Security concepts practiced
+
+- Private-by-default cloud storage
+- S3 Block Public Access
+- Server-side encryption at rest
+- Object versioning
+- Data recovery
+- IAM Identity Center authentication
+- AWS CLI administration
+- Resource lifecycle and cost-conscious cleanup
+
+### Recovery test
+
+A test object was uploaded as Version 1 and later overwritten with Version 2.
+
+Amazon S3 retained both versions. I identified the previous Version ID and successfully downloaded Version 1 into a separate local recovery file, confirming that object versioning could be used to recover overwritten data.
